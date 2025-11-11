@@ -1,0 +1,96 @@
+<section class="reports-page">
+  <!-- Header -->
+  <div class="reports-header">
+    <h1>Reports</h1>
+    <div class="actions">
+      <button id="export-btn">📥 Export to Excel</button>
+      <button id="filter-toggle-btn">🔍 Filter</button>
+    </div>
+  </div>
+  <p class="subtitle">Manage and review all submitted reports.</p>
+
+  <!-- Filter Section -->
+  <div class="filter-panel" id="filter-panel" style="display: none">
+    <form class="filter-form">
+      <label
+        >Status:
+        <select name="status">
+          <option>All</option>
+          <option>Pending</option>
+          <option>In Review</option>
+          <option>Fixed</option>
+          <option>Rejected</option>
+        </select>
+      </label>
+      <label
+        >Category:
+        <select name="category">
+          <option>All</option>
+          <option>Flooding</option>
+          <option>Illegal Dumping</option>
+          <option>Open Burning</option>
+        </select>
+      </label>
+      <label>Date From: <input type="date" /></label>
+      <label>Date To: <input type="date" /></label>
+      <label
+        >Location:
+        <select name="location">
+          <option>All</option>
+          <option>Davao City</option>
+          <option>Toril</option>
+        </select>
+      </label>
+      <button type="submit">Apply Filter</button>
+      <button type="reset">Clear</button>
+    </form>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-area">
+    <input type="text" placeholder="🔎 Search reports..." />
+  </div>
+
+  <!-- Reports Table -->
+  <table class="reports-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Reporter</th>
+        <th>Location</th>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ECO-1</td>
+        <td>John D.</td>
+        <td>Davao City</td>
+        <td>10/25/2025</td>
+        <td>Flooding</td>
+        <td>
+          <select>
+            <option>Pending</option>
+            <option>In Review</option>
+            <option>Fixed</option>
+            <option>Rejected</option>
+          </select>
+        </td>
+        <td>
+          <button class="view-btn">View</button>
+        </td>
+      </tr>
+      <!-- Additional rows dynamically added here -->
+    </tbody>
+  </table>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button>« Prev</button>
+    <span>Page 1 of 5</span>
+    <button>Next »</button>
+  </div>
+</section>

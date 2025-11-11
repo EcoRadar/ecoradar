@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EcoRadar</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!--------------------- LOGIN FORM FOR ADMINNNNNNNN ------------------------- -->
+    <div class="login-screen" id="loginScreen">
+      <div class="login-box">
+        <form id="loginForm">
+          <img src="images/ecoradar.png" alt="EcoRadar Logo" />
+          <h2>Login to EcoRadar</h2>
+
+          <input type="email" id="email" placeholder="Email" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+
+          <button type="submit">Login</button>
+          <p id="loginMessage"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- <form id="loginForm">
+  <img src="images/ecoradar.png" alt="EcoRadar Logo" />
+  <h2>Login to EcoRadar</h2>
+  <input type="text" id="username" placeholder="Email" required />
+  <input type="password" id="password" placeholder="Password" required />
+  <button type="submit">Login</button>
+  <p id="loginMessage" style="color: red; margin-top: 10px;"></p>
+</form> -->
+
+    <!--  ---- DASHBOARD AYE ------ -->
+    <div class="dashboard" id="dashboard">
+      <div class="sidebar">
+        <div class="logo">
+          <img src="images/ecoradar.png" alt="EcoRadar Logo" />
+          <span>EcoRadar</span>
+        </div>
+        <ul>
+          <li class="active" data-section="home">
+            <a href="#"><i class="fa-solid fa-grip"></i> Dashboard</a>
+          </li>
+          <li data-section="reports">
+            <a href="#"><i class="fa-solid fa-clipboard-list"></i> Reports</a>
+          </li>
+          <li data-section="Map">
+            <a href="#"><i class="fa-solid fa-map"></i> Map</a>
+          </li>
+          <li data-section="notifications">
+            <a href="#"><i class="fa-solid fa-bell"></i> Notifications</a>
+          </li>
+          <li data-section="users">
+            <a href="#"><i class="fa-solid fa-users"></i> Users</a>
+          </li>
+          <li>
+            <a href="#" onclick="logout()"
+              ><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- <div class="main-content-cards"> -->
+
+      <div class="main-content">
+        <section id="home" class="content-section active">
+          <header>
+            <h1>Dashboard</h1>
+            <p>Welcome, Admin!</p>
+          </header>
+
+          <div class="status-cards">
+            <div class="card" id="pending">
+              <h3>Pending</h3>
+              <span id="pendingCount">0</span>
+            </div>
+            <div class="card" id="review">
+              <h3>In Review</h3>
+              <span id="inReviewCount">0</span>
+            </div>
+            <div class="card" id="fixed">
+              <h3>Fixed</h3>
+              <span id="fixedCount">0</span>
+            </div>
+            <div class="card" id="urgent">
+              <h3>Urgent</h3>
+              <span id="urgentCount">0</span>
+            </div>
+          </div>
+          <br />
+
+          <div class="recent-reports">
+            <header>
+              <h2>Recent Reports</h2>
+            </header>
+
+            <table class="recent-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Reporter</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                  <th>Category</th>
+                  <th>Severity</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="recentReports"></tbody>
+            </table>
+
+            <a href="reports.html" class="show-all">Show all</a>
+          </div>
+        </section>
+
+        <!-- -----------REPORTS SIDEBAR TAB CONTENT! ------------------------------- -->
+        <section id="reports" class="content-section">
+          <header>
+            <h1>Reports</h1>
+            <p>Latest environmental reports</p>
+          </header>
+
+          <div class="reports-controls">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search reports..."
+            />
+            <!-- <button id="searchBtn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button> -->
+
+            <select id="filterStatus">
+              <option value="">All Status</option>
+              <option value="Pending">Pending</option>
+              <option value="In Review">In Review</option>
+              <option value="Resolved">Resolved</option>
+            </select>
+
+            <select id="filterCategory">
+              <option value="">All Categories</option>
+              <option value="Illegal Dumping">Illegal Dumping</option>
+              <option value="Flooding">Flooding</option>
+              <option value="Open Burning">Open Burning</option>
+            </select>
+
+            <select id="filterSeverity">
+              <option value="">All Severity</option>
+              <option value="Low">Low</option>
+              <option value="Moderate">Moderate</option>
+              <option value="High">High</option>
+            </select>
+
+            <button id="clearFilters">Clear</button>
+          </div>
+
+          <br /><br />
+
+          <!-------------- 📱📑 Reports Container 📱📑-------------------->
+          <div id="reportCards" class="report-card-container">
+            <!-- Cards will load here -->
+          </div>
+        </section>
+
+        <!-- -----------MAPPED REPORTS SIDEBAR TAB CONTENT! ------------------------------- -->
+        <section id="Map" class="content-section">
+          <header>
+            <h1>Map</h1>
+            <p>Local Reports</p>
+          </header>
+          <div id="map-report"></div>
+        </section>
+
+        <!-- -----------NOTIFICATIONS SIDEBAR TAB CONTENT! ------------------------------- -->
+        <section id="notifications" class="content-section">
+          <header>
+            <h1>Notifications</h1>
+            <p>System alerts and updates</p>
+          </header>
+          <div id="notificationsList" class="notif-list"></div>
+        </section>
+
+        <!-- ----------------USERS SIDEBAR-------------------- -->
+        <section id="users" class="content-section">
+          <header>
+            <h1>Users</h1>
+            <p>Manage and view all registered EcoRadar users</p>
+          </header>
+
+          <div class="user-table-container">
+            <table class="user-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone Number</th>
+                  <th>Role</th>
+                  <th>Date Joined</th>
+                </tr>
+              </thead>
+              <tbody id="userTableBody">
+                <!-- I'm guessing the users load here 😋 -->
+              </tbody>
+            </table>
+          </div>
+          <!-- User Details Modal -->
+          <div id="userModal" class="modal hidden">
+            <div class="modal-content">
+              <span id="closeModal" class="close">&times;</span>
+              <h2>User Details</h2>
+              <p><strong>Username:</strong> <span id="modalUsername"></span></p>
+              <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+              <p><strong>Phone:</strong> <span id="modalPhone"></span></p>
+              <p><strong>Role:</strong> <span id="modalRole"></span></p>
+              <p>
+                <strong>Created At:</strong> <span id="modalCreatedAt"></span>
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/report.js"></script>
+    <script type="module" src="js/map.js"></script>
+    <script>
+      window.deferMapInit = function () {
+        import("./js/map.js")
+          .then((module) => {
+            window.initMap = module.initMap;
+            module.initMap();
+          })
+          .catch((err) => console.error("Map module load failed:", err));
+      };
+
+      // ⏱ Safety net: retry once after 1.5 seconds if Maps isn’t ready
+      setTimeout(() => {
+        if (typeof google !== "undefined" && !window.mapInitialized) {
+          console.log("🕐 Retrying map initialization...");
+          import("./js/map.js")
+            .then((module) => {
+              window.initMap = module.initMap;
+              module.initMap();
+            })
+            .catch((err) => console.error("Map module retry failed:", err));
+        }
+      }, 1500);
+    </script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpAQEqN9Nf64sBCoaWLJ-Pnsner5gtmUE&callback=deferMapInit&loading=async&libraries=marker"
+      async
+      defer
+    ></script>
+
+    <script type="module" src="js/notifications.js"></script>
+    <script type="module" src="js/users.js"></script>
+  </body>
+</html>
